@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realidad Virtual - Información Completa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0a0a1a;
+            color: #f0f0f0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #0d0d2e, #1a1a40);
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(0, 198, 255, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #a0a0e0;
+        }
+        
+        .vr-headset {
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 8rem;
+            opacity: 0.2;
+            color: #00c6ff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        section {
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background: rgba(10, 15, 35, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 198, 255, 0.2);
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: #00c6ff;
+            display: flex;
+            align-items: center;
+        }
+        
+        h2 i {
+            margin-right: 15px;
+            font-size: 1.8rem;
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 2rem;
+        }
+        
+        .card {
+            background: rgba(20, 25, 50, 0.8);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+            border-left: 4px solid #0072ff;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 198, 255, 0.3);
+        }
+        
+        .card h3 {
+            color: #00c6ff;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .video-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-top: 2rem;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-info {
+            padding: 1.5rem;
+            background: rgba(20, 25, 50, 0.8);
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .video-info h3 {
+            color: #00c6ff;
+            margin-bottom: 1rem;
+        }
+        
+        .applications {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .app {
+            background: rgba(20, 25, 50, 0.8);
+            width: 180px;
+            height: 180px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .app:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 198, 255, 0.3);
+        }
+        
+        .app i {
+            font-size: 3rem;
+            color: #00c6ff;
+            margin-bottom: 15px;
+        }
+        
+        .resource-link {
+            display: block;
+            margin-top: 2rem;
+            padding: 1rem;
+            background: linear-gradient(to right, #0d0d2e, #1a1a40);
+            border-radius: 10px;
+            text-decoration: none;
+            color: #00c6ff;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 198, 255, 0.3);
+        }
+        
+        .resource-link:hover {
+            background: linear-gradient(to right, #1a1a40, #2a2a80);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 198, 255, 0.3);
+        }
+        
+        footer {
+            background: linear-gradient(to right, #0d0d2e, #1a1a40);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .vr-headset {
+                display: none;
+            }
+            
+            .video-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .highlight {
+            color: #00c6ff;
+            font-weight: bold;
+        }
+        
+        .quote {
+            font-style: italic;
+            border-left: 4px solid #0072ff;
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            color: #a0a0e0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Realidad Virtual</h1>
+            <p class="subtitle">Explorando los límites entre lo real y lo virtual</p>
+            <div class="vr-headset">
+                <i class="fas fa-vr-cardboard"></i>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section id="que-es">
+            <h2><i class="fas fa-question-circle"></i> ¿Qué es la Realidad Virtual?</h2>
+            <p>La <span class="highlight">Realidad Virtual (RV)</span> es un entorno de escenas y objetos de apariencia real generado mediante tecnología informática que crea en el usuario la sensación de estar inmerso en él. Dicho entorno se contempla a través de un dispositivo conocido como gafas o casco de realidad virtual.</p>
+            
+            <p>La RV permite sumergirse en videojuegos como si fueras uno de los personajes, aprender a realizar operaciones de corazón o mejorar la calidad de un entrenamiento deportivo para obtener el máximo rendimiento.</p>
+            
+            <div class="quote">
+                "La realidad virtual es una ventana a mundos que solo existían en nuestra imaginación."
+            </div>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3>Inmersión Total</h3>
+                    <p>La RV te transporta a lugares lejanos, mundos fantásticos o recreaciones históricas con una sensación de presencia increíble.</p>
+                </div>
+                <div class="card">
+                    <h3>Interacción Natural</h3>
+                    <p>Los controles de movimiento y seguimiento de manos permiten interactuar con el entorno virtual de forma intuitiva.</p>
+                </div>
+                <div class="card">
+                    <h3>Experiencias Multisensoriales</h3>
+                    <p>Algunos sistemas incluyen retroalimentación háptica, audio 3D e incluso olfato para una experiencia más completa.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="usos">
+            <h2><i class="fas fa-gamepad"></i> Usos Casuales</h2>
+            <p>En el ámbito del entretenimiento, la realidad virtual ha revolucionado la forma en que experimentamos los videojuegos, el cine y las interacciones sociales.</p>
+            
+            <div class="applications">
+                <div class="app">
+                    <i class="fas fa-gamepad"></i>
+                    <p>Videojuegos Inmersivos</p>
+                </div>
+                <div class="app">
+                    <i class="fas fa-film"></i>
+                    <p>Cine 360°</p>
+                </div>
+                <div class="app">
+                    <i class="fas fa-video"></i>
+                    <p>Experiencias Sociales</p>
+                </div>
+                <div class="app">
+                    <i class="fas fa-music"></i>
+                    <p>Conciertos Virtuales</p>
+                </div>
+                <div class="app">
+                    <i class="fas fa-running"></i>
+                    <p>Fitness Inmersivo</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="educacion">
+            <h2><i class="fas fa-graduation-cap"></i> Aplicaciones en Educación</h2>
+            <p>La RV está transformando la educación al permitir experiencias de aprendizaje inmersivas que eran imposibles con métodos tradicionales.</p>
+            
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe src="https://youtu.be/cwC3vUpLy0s?si=BwP1nOZG0aZyTZ1y" title="Realidad Virtual en la Educación" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                
+                <div class="video-wrapper">
+                    <iframe src="https://youtu.be/GgXtU-rpzYM?si=gfDletxrOd-snT9L" title="Realidad Virtual en la Medicina" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3>Aprendizaje Experiencial</h3>
+                    <p>Los estudiantes pueden visitar antiguas civilizaciones, explorar el sistema solar o adentrarse en el cuerpo humano.</p>
+                </div>
+                <div class="card">
+                    <h3>Formación Técnica</h3>
+                    <p>Simulación de procedimientos complejos sin riesgos ni costes elevados para formar a profesionales técnicos.</p>
+                </div>
+                <div class="card">
+                    <h3>Educación Especial</h3>
+                    <p>Herramientas adaptadas para estudiantes con necesidades educativas especiales que benefician de entornos controlados.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="profesional">
+            <h2><i class="fas fa-briefcase"></i> Usos Profesionales</h2>
+            <p>En el ámbito profesional, la realidad virtual ha encontrado aplicaciones en numerosos sectores, mejorando procesos, reduciendo costes y aumentando la seguridad.</p>
+            
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe src="https://youtu.be/MHH1XKWitwo?si=DLfAM-GoRGva8u9K" title="Realidad Virtual en Arquitectura" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                
+                <div class="video-wrapper">
+                    <iframe src="https://youtu.be/MMw-kkGQ-6M?si=_M_8xmDSPkp5hN-f" title="Realidad Virtual en Entrenamiento" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3>Medicina y Cirugía</h3>
+                    <p>Simulaciones quirúrgicas, tratamiento de fobias, terapia de exposición y rehabilitación con entornos controlados.</p>
+                </div>
+                <div class="card">
+                    <h3>Arquitectura y Diseño</h3>
+                    <p>Visualización de proyectos arquitectónicos, recorridos virtuales de inmuebles y diseño de interiores inmersivo.</p>
+                </div>
+                <div class="card">
+                    <h3>Empresa e Industria</h3>
+                    <p>Reuniones virtuales, simulaciones de procesos industriales, formación de empleados y diseño de prototipos.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="google-maps">
+            <h2><i class="fas fa-map-marked-alt"></i> Google Maps y Realidad Virtual</h2>
+            <p>Google Maps incorpora funciones de realidad virtual que permiten explorar lugares como si estuvieras allí. Con la función Street View, puedes realizar recorridos virtuales inmersivos por ciudades de todo el mundo.</p>
+            
+            <a href="https://www.google.com/maps" class="resource-link" target="_blank">
+                <i class="fas fa-external-link-alt"></i> Explora Google Maps con funciones de Realidad Virtual
+            </a>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3>Street View</h3>
+                    <p>Explora lugares con imágenes panorámicas de 360 grados que te sumergen en el entorno.</p>
+                </div>
+                <div class="card">
+                    <h3>Navegación Inmersiva</h3>
+                    <p>Visualiza rutas y direcciones en un entorno 3D que facilita la orientación espacial.</p>
+                </div>
+                <div class="card">
+                    <h3>Google Earth VR</h3>
+                    <p>Experiencia completa de realidad virtual para explorar nuestro planeta desde nuevas perspectivas.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="futuro">
+            <h2><i class="fas fa-rocket"></i> El Futuro de la RV</h2>
+            <p>El futuro de la realidad virtual es prometedor, con avances tecnológicos que mejorarán la resolución, reducirán la latencia y harán los dispositivos más ligeros y accesibles.</p>
+            
+            <p>Se espera que la convergencia con la inteligencia artificial y el aumento de la potencia de procesamiento permitan experiencias aún más realistas y personalizadas.</p>
+            
+            <div class="quote">
+                "La realidad virtual está destinada a convertirse en una parte integral de cómo trabajamos, aprendemos y nos entretenemos."
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>© 2023 Página Informativa sobre Realidad Virtual</p>
+        <p>Explorando el presente y futuro de la tecnología inmersiva</p>
+    </footer>
+</body>
+</html>
